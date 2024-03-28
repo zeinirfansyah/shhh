@@ -1,12 +1,33 @@
 <x-app-layout>
   <section class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6 py-12">
     <div class="flex flex-col p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-
       <div class="flex flex-col md:flex-row gap-5 md:gap-0 justify-between">
         <div class="space-y-6 w-full md:w-1/2">
           <div>
             <h1>Username</h1>
             <h1 class="px-3 py-2 border-2">{{ $user->username }}</h1>
+          </div>
+          <div>
+            <h1>Display Name</h1>
+            <h1 class="px-3 py-2 border-2">{{ $user->display_name }}</h1>
+          </div>
+          <div>
+            <h1>Email</h1>
+            <h1 class="px-3 py-2 border-2">{{ $user->email }}</h1>
+          </div>
+          <div>
+            <h1>Status</h1>
+            <h1 class="px-3 py-2 border-2">
+                @if ($user->status)
+                {{ $user->status }}
+                @else
+                No Status
+                @endif
+            </h1>
+          </div>
+          <div id="button">
+            <a href="{{ route('profile.edit') }}"
+              class="bg-gray-800 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">Edit</a>
           </div>
         </div>
         <div class="flex w-full md:w-1/2 justify-center items-center order-first md:order-last">
@@ -30,11 +51,6 @@
             </div>
           </div>
         </div>
-      </div>
-
-      <div id="button">
-        <a href="{{ route('profile.edit') }}"
-          class="bg-gray-800 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">Edit</a>
       </div>
     </div>
   </section>
