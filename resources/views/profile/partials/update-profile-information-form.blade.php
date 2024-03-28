@@ -59,7 +59,7 @@
           @endif
         </div>
         <div>
-            <x-input-label for="avatar" :value="__('Avatar')"/>
+          <x-input-label for="avatar" :value="__('Avatar')" />
 
           <input type="file" accept="image/*" id="avatar" name="avatar"
             class="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100 " />
@@ -67,12 +67,19 @@
         </div>
       </div>
       <div class="flex w-full md:w-1/2 justify-center items-center order-first md:order-last">
-        @if ($user->avatar === 'default.jpg')
-          <img src="{{ asset('assets/images/vox_populi_avatar.png') }}"
-          class="w-[150px] h-[150px] lg:w-[200px] lg:h-[200px] object-cover rounded-full border-2">
-        @else
-          <img src="{{ asset('storage/avatars/' . $user->avatar) }}" alt="{{ $user->avatar }}" class="w-[150px] h-[150px] lg:w-[200px] lg:h-[200px] object-cover rounded-full border-2 ">
-        @endif
+        <div
+          class="flex flex-col gap-3 justify-center items-center lg:px-2 lg:pt-4 lg:pb-6 border-2 shadow-md lg:-rotate-3 hover:rotate-0 hover:rounded-xl outline-2 outline-dashed outline-offset-4 outline-gray-400 transition-all duration-300">
+          @if ($user->avatar === 'default.jpg')
+            <img src="{{ asset('assets/images/vox_populi_avatar.png') }}"
+              class="w-[150px] h-[150px] lg:w-[240px] lg:h-[240px] object-cover">
+          @else
+            <img src="{{ asset('storage/avatars/' . $user->avatar) }}" alt="{{ $user->avatar }}"
+              class="w-[150px] h-[150px] lg:w-[240px] lg:h-[240px] object-cover ">
+          @endif
+          <div id="status">
+            <p class="text-sm text-gray-600 dark:text-gray-400">Hai,... I'm a thief.</p>
+          </div>
+        </div>
       </div>
     </div>
 

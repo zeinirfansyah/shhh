@@ -13,6 +13,14 @@ use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
+    // show user profile
+    public function showProfile(User $username)
+    {
+        $user = auth()->user();
+
+        return view('profile.profile', compact('user'));
+    }
+
     /**
      * Display the user's profile form.
      */
@@ -30,14 +38,17 @@ class ProfileController extends Controller
     {
         $user = auth()->user();
 
-        $request->validate([
-            'username' => ['required', 'string', 'max:255', 'lowercase', 'regex:/^[a-z0-9_]+$/', 'unique:' . User::class . ',username,' . $user->id],
-            'display_name' => ['string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class . ',email,' . $user->id],
-            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ], [
-            'username.regex' => 'The username may only contain letters, numbers, and underscores.',
-        ]);
+        $request->validate(
+            [
+                'username' => ['required', 'string', 'max:255', 'lowercase', 'regex:/^[a-z0-9_]+$/', 'unique:' . User::class . ',username,' . $user->id],
+                'display_name' => ['string', 'max:255'],
+                'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class . ',email,' . $user->id],
+                'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ],
+            [
+                'username.regex' => 'The username may only contain letters, numbers, and underscores.',
+            ],
+        );
 
         // Handle file upload
         $currentAvatar = $user->avatar;
@@ -53,7 +64,7 @@ class ProfileController extends Controller
 
         User::where('id', $user->id)->update($userData);
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return Redirect::route('profile.show')->with('status', 'profile-updated');
     }
 
     private function handleAvatarUpload(Request $request, $currentAvatar)
