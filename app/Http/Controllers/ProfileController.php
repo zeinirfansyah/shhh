@@ -44,6 +44,7 @@ class ProfileController extends Controller
                 'display_name' => ['string', 'max:255'],
                 'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class . ',email,' . $user->id],
                 'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'status' => 'nullable|string|max:255',
             ],
             [
                 'username.regex' => 'The username may only contain letters, numbers, and underscores.',
@@ -59,6 +60,7 @@ class ProfileController extends Controller
             'display_name' => $request->display_name,
             'email' => $request->email,
             'avatar' => $filename,
+            'status' => $request->status,
             'updated_at' => now(),
         ];
 

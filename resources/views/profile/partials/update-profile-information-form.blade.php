@@ -58,6 +58,13 @@
             </div>
           @endif
         </div>
+
+        <div>
+          <x-input-label for="status" :value="__('Status')" />
+          <x-text-input id="status" name="status" type="text" class="mt-1 block w-full" :value="old('status', $user->status)" autofocus autocomplete="status" />
+          <x-input-error class="mt-2" :messages="$errors->get('status')" />
+        </div>
+
         <div>
           <x-input-label for="avatar" :value="__('Avatar')" />
 
@@ -70,14 +77,14 @@
         <div
           class="flex flex-col gap-3 justify-center items-center lg:px-2 lg:pt-4 lg:pb-6 border-2 shadow-md lg:-rotate-3 hover:rotate-0 hover:rounded-xl outline-2 outline-dashed outline-offset-4 outline-gray-400 transition-all duration-300">
           @if ($user->avatar === 'default.jpg')
-            <img src="{{ asset('assets/images/vox_populi_avatar.png') }}"
+            <img src="{{ asset('assets/images/shhh_avatar.png') }}"
               class="w-[150px] h-[150px] lg:w-[240px] lg:h-[240px] object-cover">
           @else
             <img src="{{ asset('storage/avatars/' . $user->avatar) }}" alt="{{ $user->avatar }}"
               class="w-[150px] h-[150px] lg:w-[240px] lg:h-[240px] object-cover ">
           @endif
           <div id="status">
-            <p class="text-sm text-gray-600 dark:text-gray-400">Hai,... I'm a thief.</p>
+            <p class="text-sm text-gray-600 dark:text-gray-400">{{ $user->status }}</p>
           </div>
         </div>
       </div>

@@ -20,7 +20,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/vox_populi/{username}', function (string $username) {
+Route::get('/shhh/{username}', function (string $username) {
     $user = User::where('username', $username)->firstOrFail();
     if (!$user) {
         return view('profile.usernotfound');
