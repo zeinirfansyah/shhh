@@ -21,7 +21,7 @@
               <a href="{{ route('dashboard') }}" class="hover:text-[#00C0E6] transition-all duration-500">Dashboard</a>
             </li>
             <li class="my-5 md:my-0">
-              <a href="" class="hover:text-[#00C0E6] transition-all duration-500">Messages</a>
+              <a href="{{ route('messages') }}" class="hover:text-[#00C0E6] transition-all duration-500">Messages</a>
             </li>
           @else
             <li class="text-gray-400 my-5 md:my-0">
