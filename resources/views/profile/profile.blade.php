@@ -1,23 +1,23 @@
 <x-app-layout>
   <section class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6 py-12">
-    <div class="flex flex-col p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
+    <div class="flex flex-col p-4 sm:p-8 bg-white  shadow sm:rounded-lg">
       <div class="flex flex-col md:flex-row gap-5 md:gap-0 justify-between">
         <div class="space-y-6 w-full md:w-1/2">
           <div>
-            <h1>Username</h1>
-            <h1 class="px-3 py-2 border-2">{{ $user->username }}</h1>
+            <h1 class="">Username</h1>
+            <h1 class="px-3 py-2 border-2 ">{{ $user->username }}</h1>
           </div>
           <div>
-            <h1>Display Name</h1>
-            <h1 class="px-3 py-2 border-2">{{ $user->display_name }}</h1>
+            <h1 class="">Display Name</h1>
+            <h1 class="px-3 py-2 border-2 ">{{ $user->display_name }}</h1>
           </div>
           <div>
-            <h1>Email</h1>
-            <h1 class="px-3 py-2 border-2">{{ $user->email }}</h1>
+            <h1 class="">Email</h1>
+            <h1 class="px-3 py-2 border-2 ">{{ $user->email }}</h1>
           </div>
           <div>
-            <h1>Status</h1>
-            <h1 class="px-3 py-2 border-2">
+            <h1 class="">Status</h1>
+            <h1 class="px-3 py-2 border-2 ">
                 @if ($user->status)
                 {{ $user->status }}
                 @else
@@ -41,7 +41,7 @@
                 class="w-[150px] h-[150px] lg:w-[240px] lg:h-[240px] object-cover ">
             @endif
             <div id="status pb-2" >
-              <p class="text-sm  text-gray-600 dark:text-gray-400">
+              <p class="text-sm  text-gray-600 ">
                 @if ($user->status)
                 {{ $user->status }}
                 @else
