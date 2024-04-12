@@ -66,7 +66,7 @@ class ProfileController extends Controller
 
         User::where('id', $user->id)->update($userData);
 
-        return Redirect::route('profile.show')->with('status', 'profile-updated');
+        return Redirect::route('dashboard')->with('status', 'profile-updated');
     }
 
     private function handleAvatarUpload(Request $request, $currentAvatar)
