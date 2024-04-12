@@ -34,10 +34,19 @@ class messageController extends Controller
 
     public function messageDetail($id)
     {
-       $message = Message::find($id);
+        $user = Auth::user();
+
+        $message = Message::where('id', $id)
+            ->where('user_id', $user->id)
+            ->first();
+
+        if (!$message) {
+            return redirect()->back()->with('error', 'Message not found or unauthorized access.');
+        }
 
         return view('message_detail', compact('message'));
     }
+
 
     public function sendMessage(Request $request, $username)
     {
