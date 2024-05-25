@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('message_sender')->nullable();
             $table->string('message_title')->nullable();
             $table->text('message_content');
+            $table->enum('status', ['read', 'unread'])->default('unread');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
