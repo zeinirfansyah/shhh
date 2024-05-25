@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -35,14 +34,14 @@ Route::get('/', function () {
 Route::get('/shhh/{username}', [messageController::class, 'index']);
 Route::post('/shhh/{username}/send-message', [messageController::class, 'sendMessage'])->name('sendMessage');
 
-
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [ProfileController::class, 'showProfile'])->name('dashboard');
     Route::get('/messages', [messageController::class, 'showMessages'])->name('messages');
     Route::get('/messages/detail/{id}', [messageController::class, 'messageDetail'])->name('messageDetail');
+    Route::put('/messages/detail/{id}', [messageController::class, 'updateMessageStatus'])->name('updateMessageStatus');
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile/edit', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile/edit', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
