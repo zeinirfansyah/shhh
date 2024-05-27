@@ -5,10 +5,17 @@
         @foreach ($messages as $message)
           <form action="{{ route('updateMessageStatus', ['id' => $message->id]) }}" method="POST">
             @csrf @method('put')
-            <button type="submit"
-              class="envelope w-[12rem] flex flex-col justify-center items-center outline-dashed -outline-offset-4 outline-gray-400 p-4">
-              <img src="{{ asset('assets/illustrations/envelope.svg') }}" alt="">
-              <h1 class="text-center">New Message</h1>
+            <button type="submit" class="message w-[12rem] flex flex-col justify-center items-center p-4">
+              <!-- $message->status === 'read' render image A else render image B -->
+              @if ($message->status === 'read')
+                <img src="{{ asset('assets/illustrations/message.webp') }}" alt="message open"
+                  class="hover:scale-110 transition-all duration-500" />
+              @else
+                <img src="{{ asset('assets/illustrations/newmessage.webp') }}" alt="message"
+                  class="hover:scale-110 transition-all duration-500" />
+              @endif
+              <p class="text-gray-600">{{ $message->title }}</p>
+
             </button>
           </form>
         @endforeach
