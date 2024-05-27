@@ -23,10 +23,35 @@ class messageController extends Controller
         ]);
     }
 
+    // public function showMessages()
+    // {
+    //     $user = Auth::user();
+    //     $messages = Message::where('user_id', $user->id)
+    //         ->orderBy('created_at', 'asc')
+    //         ->get();
+
+    //     return view('messages', [
+    //         'messages' => $messages,
+    //     ]);
+    // }
+
     public function showMessages()
     {
         $user = Auth::user();
-        $messages = Message::where('user_id', $user->id)->get();
+
+        $messages = Message::where('user_id', $user->id)
+            ->orderBy('created_at', 'asc') // Sort by created_at in ascending order
+            ->get();
+
+        // Prioritize unread messages
+        $unreadMessages = $messages->filter(function ($message) {
+            return $message->status === 'unread';
+        });
+
+        $readMessages = $messages->diff($unreadMessages); // Keep read messages
+
+        // Combine unread and read messages (unread first)
+        $messages = $unreadMessages->merge($readMessages);
 
         return view('messages', [
             'messages' => $messages,
@@ -63,7 +88,7 @@ class messageController extends Controller
         if ($message->status !== 'read') {
             $message->update(['status' => 'read']);
         }
-        
+
         return Redirect::route('messageDetail', $id)->with('success', 'Message status updated successfully.');
     }
 
