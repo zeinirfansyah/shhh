@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@400;700&family=Londrina+Sketch&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+
+.text-londrina {
+    font-family: "Londrina Sketch", sans-serif;
+}
+
+.text-cabin {
+    font-family: "Cabin Sketch", sans-serif;
+}
+
+.welcome-canvas {
+    background-image: linear-gradient(to top, rgba(0,0,0,0.5), rgba(0,0,0,1)),url('/assets/images/shhhketch.webp');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.shhh {
+    animation: flicker 3s infinite;
+}
+
+@keyframes flicker {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.3;
+    }
+    100% {
+        opacity: 1;
+    }
+}
